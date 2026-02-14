@@ -3,62 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Lessly 🌹</title>
+<title>Nuestra Historia 🌹</title>
 
 <style>
 body{
   margin:0;
-  background: radial-gradient(circle at center, #2b0a1f, #000);
-  overflow:hidden;
-  font-family: 'Georgia', serif;
-  color:white;
+  background:linear-gradient(to bottom,#1a0010,#000);
+  font-family:'Georgia', serif;
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
-  text-align:center;
-}
-
-/* SOBRE */
-#envelope{
-  width:280px;
-  height:180px;
-  background:#fff;
-  border-radius:10px;
-  position:relative;
-  cursor:pointer;
-  box-shadow:0 20px 40px rgba(0,0,0,0.5);
-  transition:transform 1s ease;
-}
-
-#flap{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:#ffccd9;
-  clip-path:polygon(0 0, 50% 60%, 100% 0);
-  transform-origin:top;
-  transition:transform 1s ease;
-}
-
-/* CARTA */
-#letter{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%) scale(0);
-  background:white;
+  overflow:hidden;
   color:#333;
-  padding:25px;
-  border-radius:15px;
-  width:320px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.5);
-  transition:transform 1s ease;
 }
 
-/* RAMO */
-#bouquet{
-  font-size:70px;
-  margin:15px 0;
+/* Libro */
+#book{
+  width:350px;
+  height:500px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.6);
+  position:relative;
+  overflow:hidden;
+  padding:30px;
+  text-align:center;
+  transition:opacity 0.6s ease;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+h1{
+  color:#b30059;
+}
+
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#b30059;
+  color:white;
+  cursor:pointer;
+}
+
+/* Flores final */
+#flowers{
+  font-size:60px;
+  margin:20px 0;
   animation:float 3s ease-in-out infinite;
 }
 
@@ -68,7 +67,7 @@ body{
   100%{transform:translateY(0);}
 }
 
-/* PETALOS */
+/* Pétalos */
 .petal{
   position:absolute;
   top:-20px;
@@ -81,49 +80,80 @@ body{
     transform:translateY(110vh) rotate(360deg);
   }
 }
-
-/* BRILLO */
-.glow{
-  text-shadow:0 0 15px #ff4da6, 0 0 30px #ff1a75;
-}
 </style>
 </head>
 
 <body>
 
-<div id="envelope">
-  <div id="flap"></div>
-</div>
+<div id="book">
 
-<div id="letter">
-  <h2 class="glow">Para ti, Lessly 🌹</h2>
-  <div id="bouquet">💐🌹🌷🌺🌸</div>
-  <p>
-    Tal vez hoy no pude entregarte flores en tus manos…  
-    pero quiero que recibas las más hermosas,  
-    las que simbolizan lo que siento por ti.<br><br>
-    Cada pétalo representa mi amor,  
-    cada rosa mi compromiso,  
-    y cada flor mi promesa de cuidarte siempre.<br><br>
-    Porque tú, Lessly,  
-    eres la flor más hermosa que Dios puso en mi vida. ❤️
-  </p>
+  <!-- Página 1 -->
+  <div class="page active">
+    <h1>Nuestra Historia</h1>
+    <p>Para ti, Lessly ❤️</p>
+    <button onclick="nextPage()">Abrir</button>
+  </div>
+
+  <!-- Página 2 -->
+  <div class="page">
+    <h1>El Comienzo</h1>
+    <p>
+      Desde el primer momento supe que había algo especial en ti.
+      Tu sonrisa cambió mis días,
+      y tu presencia llenó mi vida de luz.
+    </p>
+    <button onclick="nextPage()">Siguiente</button>
+  </div>
+
+  <!-- Página 3 -->
+  <div class="page">
+    <h1>Lo Que Eres Para Mí</h1>
+    <p>
+      Eres mi paz en medio del caos,
+      mi alegría diaria,
+      mi compañera fiel,
+      y el amor que siempre soñé.
+    </p>
+    <button onclick="nextPage()">Siguiente</button>
+  </div>
+
+  <!-- Página 4 -->
+  <div class="page">
+    <h1>Nuestra Bendición</h1>
+    <p>
+      “El amor es paciente, es bondadoso.”
+      <br>— 1 Corintios 13:4
+    </p>
+    <button onclick="nextPage()">La Última Página</button>
+  </div>
+
+  <!-- Página 5 -->
+  <div class="page">
+    <h1>Para Ti, Lessly 🌹</h1>
+    <div id="flowers">💐🌹🌷🌺🌸</div>
+    <p>
+      Tal vez hoy no pude darte flores en tus manos…
+      pero quiero que recibas las más hermosas,
+      porque tú eres la flor más preciosa que Dios puso en mi vida.
+    </p>
+  </div>
+
 </div>
 
 <script>
-const envelope = document.getElementById("envelope");
-const flap = document.getElementById("flap");
-const letter = document.getElementById("letter");
+const pages = document.querySelectorAll(".page");
+let current = 0;
 
-envelope.addEventListener("click", () => {
-  flap.style.transform = "rotateX(180deg)";
-  envelope.style.transform = "scale(0.8)";
-  setTimeout(() => {
-    envelope.style.display="none";
-    letter.style.transform="translateY(-50%) scale(1)";
+function nextPage(){
+  pages[current].classList.remove("active");
+  current++;
+  if(current < pages.length){
+    pages[current].classList.add("active");
+  }
+  if(current === pages.length - 1){
     createPetals();
-  },1000);
-});
+  }
+}
 
 function createPetals(){
   setInterval(()=>{
@@ -131,10 +161,10 @@ function createPetals(){
     petal.classList.add("petal");
     petal.innerHTML="🌸";
     petal.style.left=Math.random()*100+"vw";
-    petal.style.animationDuration=(3+Math.random()*5)+"s";
+    petal.style.animationDuration=(4+Math.random()*4)+"s";
     document.body.appendChild(petal);
-    setTimeout(()=>petal.remove(),8000);
-  },300);
+    setTimeout(()=>petal.remove(),9000);
+  },400);
 }
 </script>
 
