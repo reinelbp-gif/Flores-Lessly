@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Lessly 🌹</title>
+
+<style>
+body{
+  margin:0;
+  background: radial-gradient(circle at center, #2b0a1f, #000);
+  overflow:hidden;
+  font-family: 'Georgia', serif;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+}
+
+/* SOBRE */
+#envelope{
+  width:280px;
+  height:180px;
+  background:#fff;
+  border-radius:10px;
+  position:relative;
+  cursor:pointer;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  transition:transform 1s ease;
+}
+
+#flap{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#ffccd9;
+  clip-path:polygon(0 0, 50% 60%, 100% 0);
+  transform-origin:top;
+  transition:transform 1s ease;
+}
+
+/* CARTA */
+#letter{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%) scale(0);
+  background:white;
+  color:#333;
+  padding:25px;
+  border-radius:15px;
+  width:320px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  transition:transform 1s ease;
+}
+
+/* RAMO */
+#bouquet{
+  font-size:70px;
+  margin:15px 0;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
+
+/* PETALOS */
+.petal{
+  position:absolute;
+  top:-20px;
+  font-size:18px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(360deg);
+  }
+}
+
+/* BRILLO */
+.glow{
+  text-shadow:0 0 15px #ff4da6, 0 0 30px #ff1a75;
+}
+</style>
+</head>
+
+<body>
+
+<div id="envelope">
+  <div id="flap"></div>
+</div>
+
+<div id="letter">
+  <h2 class="glow">Para ti, Lessly 🌹</h2>
+  <div id="bouquet">💐🌹🌷🌺🌸</div>
+  <p>
+    Tal vez hoy no pude entregarte flores en tus manos…  
+    pero quiero que recibas las más hermosas,  
+    las que simbolizan lo que siento por ti.<br><br>
+    Cada pétalo representa mi amor,  
+    cada rosa mi compromiso,  
+    y cada flor mi promesa de cuidarte siempre.<br><br>
+    Porque tú, Lessly,  
+    eres la flor más hermosa que Dios puso en mi vida. ❤️
+  </p>
+</div>
+
+<script>
+const envelope = document.getElementById("envelope");
+const flap = document.getElementById("flap");
+const letter = document.getElementById("letter");
+
+envelope.addEventListener("click", () => {
+  flap.style.transform = "rotateX(180deg)";
+  envelope.style.transform = "scale(0.8)";
+  setTimeout(() => {
+    envelope.style.display="none";
+    letter.style.transform="translateY(-50%) scale(1)";
+    createPetals();
+  },1000);
+});
+
+function createPetals(){
+  setInterval(()=>{
+    const petal=document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML="🌸";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(petal);
+    setTimeout(()=>petal.remove(),8000);
+  },300);
+}
+</script>
+
+</body>
+</html>
